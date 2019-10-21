@@ -1,0 +1,56 @@
+.result {
+  display: flex;
+  margin-bottom: 20px;
+  border: solid 1px $color-primary;
+  background-color: $color-light;
+  border-radius: $radius;
+  overflow: hidden;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__image {
+    width: 33.333%;
+    flex-shrink: 0;
+    border-right: solid 1px $color-primary;
+  }
+
+  &__image-wrapper {
+      padding-top: 75%;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+      }
+    }
+
+  &__texts {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__name {
+    text-transform: capitalize;
+    margin-bottom: 3px;
+  }
+
+  &__destination {
+    margin-bottom: 20px;
+  }
+
+  &__description {
+    margin-bottom: 20px;
+  }
+
+  &__details {
+    text-align: right;
+  }
+}

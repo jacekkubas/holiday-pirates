@@ -1,0 +1,12 @@
+.button {
+  background-color: $color-light;
+  border-radius: $radius;
+  border: solid 1px $color-primary;
+  color: inherit;
+  padding: 5px 15px;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+}
