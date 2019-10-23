@@ -1,10 +1,14 @@
 .result {
-  display: flex;
   margin-bottom: 20px;
-  border: solid 1px $color-primary;
-  background-color: $color-light;
+  border: solid 1px $color-medium;
   border-radius: $radius;
   overflow: hidden;
+
+  &__wrapper {
+    display: flex;
+    background-color: $color-light;
+    animation: fadeIn 0.4s;
+  }
 
   &__row {
     display: flex;
@@ -15,7 +19,7 @@
   &__image {
     width: 33.333%;
     flex-shrink: 0;
-    border-right: solid 1px $color-primary;
+    border-right: solid 1px $color-medium;
   }
 
   &__image-wrapper {
@@ -31,6 +35,7 @@
     }
 
   &__texts {
+    width: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -52,5 +57,27 @@
 
   &__details {
     text-align: right;
+  }
+
+  &__price {
+    font-size: 28px;
+  }
+
+  &__reviews {
+    border-top: solid 1px $color-medium;
+
+    &--closed {
+      display: none;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

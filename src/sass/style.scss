@@ -1,7 +1,12 @@
 @import 'variables';
 @import 'base';
 
-@import './components/header';
+@import './components/app';
+@import './components/load-more';
 @import './components/button';
 @import './components/results';
 @import './components/result';
+@import './components/stars';
+@import './components/error-message';
+@import './components/loading';
+@import './components/review';

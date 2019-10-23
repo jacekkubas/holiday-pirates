@@ -1,0 +1,10 @@
+.stars {
+  &__star {
+    font-size: 21px;
+    opacity: 0.4;
+
+    &--full {
+      opacity: 1;
+    }
+  }
+}

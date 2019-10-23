@@ -1,12 +1,18 @@
 .button {
   background-color: $color-light;
   border-radius: $radius;
-  border: solid 1px $color-primary;
+  border: solid 1px $color-medium;
   color: inherit;
-  padding: 5px 15px;
+  padding: 15px 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-medium;
+  }
 
   &:focus {
     outline: none;
-    border-color: $color-accent;
   }
 }

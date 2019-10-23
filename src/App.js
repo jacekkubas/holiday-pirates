@@ -1,37 +1,49 @@
 import React from 'react';
 import 'normalize.css';
 import './sass/style.scss';
-import Header from './components/Header';
+import Button from './components/Button';
 import Results from './components/Results';
 import Result from './components/Result';
+import ErrorMessage from './components/ErrorMessage';
+import Loading from './components/Loading';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: null,
-      isLoaded: false,
+      data: [],
+      isLoading: false,
       error: null,
       count: 1
     }
   }
 
   onBtnClick = () => {
-    fetch('http://fake-hotel-api.herokuapp.com/api/hotels?count=5')
+
+    this.setState({ isLoading: true });
+
+    fetch(`http://fake-hotel-api.herokuapp.com/api/hotels?count=5`)
       .then(response => response.json())
-      .then(data => this.setState({ data, isLoaded: true }, () => { console.log(this.state.data) }))
-      .catch(error => this.setState({ error }))
+      .then(data =>
+        this.setState({
+          data: data,
+          isLoading: false,
+        })
+      )
+      .catch(error => this.setState({ error, isLoading: false }, () => { console.log(this.state) }));
   }
 
   render() {
     return (
-      <div className="App">
-        <Header onBtnClick={this.onBtnClick} />
-        <Results>
-          {this.state.isLoaded &&
-            this.state.data.map(item => {
-              console.log(item.images[0])
+      <div className="app">
+        <div className="load-more">
+          <Button onBtnClick={this.onBtnClick}>Load Hotels</Button>
+        </div>
+
+        {this.state.data.length > 0 &&
+          <Results>
+            {this.state.data.map(item => {
               return (
                 <Result
                   key={item.id}
@@ -40,7 +52,15 @@ class App extends React.Component {
                 />
               )
             })}
-        </Results>
+          </Results>
+        }
+
+
+        {this.state.data.error &&
+          <ErrorMessage error={this.state.data.error} />}
+
+        {this.state.isLoading &&
+          <Loading />}
       </div>
     );
   }

@@ -1,0 +1,46 @@
+.review {
+  padding: 0 20px;
+  background-color: $color-medium;
+
+  &:last-child {
+    .review__wrapper {
+      border-bottom: none;
+    }
+  }
+
+  &__wrapper {
+    border-bottom: solid 1px $color-dark;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  &__icon-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+  }
+
+  &__icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+  }
+
+  &__texts {
+    width: 100%;
+  }
+
+  &__name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+}
