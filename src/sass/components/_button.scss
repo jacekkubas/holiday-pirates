@@ -1,4 +1,6 @@
 .button {
+  min-width: 150px;
+  text-align: center;
   background-color: $color-light;
   border-radius: $radius;
   border: solid 1px $color-medium;
@@ -14,5 +16,6 @@
 
   &:focus {
     outline: none;
+    border-color: rgba($color-accent, 0.5);
   }
 }

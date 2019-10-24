@@ -2,6 +2,8 @@ import React from 'react';
 import Stars from './Stars';
 import Button from './Button';
 import Review from './Review';
+import Image from './Image';
+import placeholder from '../img/placeholder.png';
 
 class Result extends React.Component {
   constructor(props) {
@@ -9,7 +11,9 @@ class Result extends React.Component {
 
     this.state = {
       reviewsData: [],
+      isEmpty: false,
       reviewsOpened: false,
+      firstLoad: true,
       error: null
     }
   }
@@ -21,17 +25,22 @@ class Result extends React.Component {
   }
 
   getReviews = () => {
-    console.log(this.state.reviewsData.length);
+    if (this.state.firstLoad) {
+      this.setState({ isLoading: true });
 
-    if (this.state.reviewsData.length === 0 ) {
       fetch(`http://fake-hotel-api.herokuapp.com/api/reviews?hotel_id=${this.props.id}`)
         .then(response => response.json())
         .then(data =>
-          this.setState({ reviewsData: data }, () => { console.log(this.state.reviewsData) })
+          this.setState({ reviewsData: data }, () => {
+            this.setState({ firstLoad: false, isLoading: false })
+          })
         )
         .catch(error => this.setState({ error, isLoading: false }));
     }
-    this.setState({ reviewsOpened: !this.state.reviewsOpened })
+
+    this.setState({
+      reviewsOpened: !this.state.reviewsOpened,
+    })
   }
 
   render() {
@@ -42,7 +51,7 @@ class Result extends React.Component {
         <div className="result__wrapper">
           <div className="result__image">
             <div className="result__image-wrapper">
-              <img src={images[0]} alt={name} />
+              <Image src={images[0]} fallbackSrc={placeholder} alt={name} />
             </div>
           </div>
           <div className="result__texts">
@@ -57,7 +66,7 @@ class Result extends React.Component {
             </div>
             <div className="result__description">{description}</div>
             <div className="result__row">
-              <Button onBtnClick={this.getReviews} >Show Reviews</Button>
+              <Button onBtnClick={this.getReviews} >{this.state.reviewsOpened ? 'Hide' : 'Show'} Reviews</Button>
               <div className="result__details">
                 <div className="result__price">{price} €</div>
                 <div className="result__date">
