@@ -3,6 +3,7 @@ import Stars from './Stars';
 import Button from './Button';
 import Review from './Review';
 import Image from './Image';
+import NoReviews from './NoReviews';
 import placeholder from '../img/placeholder.png';
 
 class Result extends React.Component {
@@ -80,6 +81,9 @@ class Result extends React.Component {
           {this.state.reviewsData.map((review, index) => {
             return <Review {...review} key={index} />
           })}
+
+          {this.state.reviewsData.length === 0 && !this.state.firstLoad &&
+            <NoReviews />}
         </div>
       </div>
     )
