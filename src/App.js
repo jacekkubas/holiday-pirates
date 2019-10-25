@@ -55,7 +55,6 @@ class App extends React.Component {
           </Results>
         }
 
-
         {this.state.data.error &&
           <ErrorMessage error={this.state.data.error} />}
 

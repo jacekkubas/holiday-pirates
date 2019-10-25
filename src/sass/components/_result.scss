@@ -43,6 +43,9 @@
   }
 
   &__image-wrapper {
+    background-image: url('../../img/placeholder.png');
+    background-size: cover;
+    background-position: center;
     padding-top: 75%;
     position: relative;
     overflow: hidden;
@@ -116,7 +119,7 @@
 
   &__reviews {
     position: relative;
-    border-top: solid 1px $color-medium;
+    border-top: solid 1px $color-light;
 
     &--closed {
       display: none;
