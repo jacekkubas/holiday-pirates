@@ -1,0 +1,16 @@
+.app {
+  width: 100%;
+  margin: auto;
+
+  @media screen and (min-width: $screen-sm) {
+    width: 750px;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    width: 1070px;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    width: 1270px;
+  }
+}

@@ -1,26 +1,68 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'normalize.css';
+import './sass/style.scss';
+import Button from './components/Button';
+import Results from './components/Results';
+import Result from './components/Result';
+import ErrorMessage from './components/ErrorMessage';
+import Loading from './components/Loading';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: [],
+      isLoading: false,
+      error: null,
+      count: 1
+    }
+  }
+
+  onBtnClick = () => {
+
+    this.setState({ isLoading: true });
+
+    fetch(`http://fake-hotel-api.herokuapp.com/api/hotels?count=5`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          data: data,
+          isLoading: false,
+        })
+      )
+      .catch(error => this.setState({ error, isLoading: false }, () => { console.log(this.state) }));
+  }
+
+  render() {
+    return (
+      <div className="app">
+        <div className="load-more">
+          <Button onBtnClick={this.onBtnClick}>Load Hotels</Button>
+        </div>
+
+        {this.state.data.length > 0 &&
+          <Results>
+            {this.state.data.map(item => {
+              return (
+                <Result
+                  key={item.id}
+                  {...item}
+                  onBtnClick={this.onBtnClick}
+                />
+              )
+            })}
+          </Results>
+        }
+
+        {this.state.data.error &&
+          <ErrorMessage error={this.state.data.error} />}
+
+        {this.state.isLoading &&
+          <Loading />}
+      </div>
+    );
+  }
 }
 
 export default App;
