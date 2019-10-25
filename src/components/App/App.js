@@ -1,11 +1,10 @@
 import React from 'react';
-import 'normalize.css';
-import './sass/style.scss';
-import Button from './components/Button';
-import Results from './components/Results';
-import Result from './components/Result';
-import ErrorMessage from './components/ErrorMessage';
-import Loading from './components/Loading';
+import LoadMore from '../LoadMore/LoadMore';
+import Button from '../Button/Button';
+import Results from '../Results/Results';
+import Result from '../Result/Result';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Loading from '../Loading/Loading';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,9 +36,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <div className="load-more">
+        <LoadMore>
           <Button onBtnClick={this.onBtnClick}>Load Hotels</Button>
-        </div>
+        </LoadMore>
 
         {this.state.data.length > 0 &&
           <Results>

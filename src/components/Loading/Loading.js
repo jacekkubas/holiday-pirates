@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as LoadingIcon } from '../img/loading.svg';
+import { ReactComponent as LoadingIcon } from '../../img/loading.svg';
 
 const Loading = () => {
   return (

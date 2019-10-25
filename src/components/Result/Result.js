@@ -1,10 +1,10 @@
 import React from 'react';
-import Stars from './Stars';
-import Button from './Button';
-import Review from './Review';
-import Image from './Image';
-import NoReviews from './NoReviews';
-import placeholder from '../img/placeholder.png';
+import Stars from '../Stars/Stars';
+import Button from '../Button/Button';
+import Review from '../Review/Review';
+import Image from '../Image/Image';
+import NoReviews from '../NoReviews/NoReviews';
+import placeholder from '../../img/placeholder.png';
 
 class Result extends React.Component {
   constructor(props) {
